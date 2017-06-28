@@ -1,11 +1,13 @@
 #!/bin/sh
 
-echo "Hello World";
+calc(){ 
+	awk "BEGIN{ print $* }" ;
+	}
 
 total_mem=$(free -m | grep Mem: | awk '{ print $2}') #Total Memory
 echo $total_mem
 used_mem=$(free -m | grep Mem: | awk '{ print $3}')
-perc_used="scale=2 ; $used_mem/$total_mem" | bc
+perc_used= calc $used_mem/$total_mem
 echo $perc_used
 
 usage() {
