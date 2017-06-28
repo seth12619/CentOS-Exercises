@@ -32,5 +32,20 @@ while getopts ":c:w:e:" o; do
             ;;
     esac
 	
+if[$c < $w]
+then
+	echo "Invalid Inputs - c must be greater than w"
+	exit 1
+elif[$perc_used >= $c]
+then
+	echo "Critical Error - Sending Mail"
+	exit 2
+elif[$perc_used >= $w]
+then
+	echo "Warning"
+	exit 1
+else
+	echo "All is gud"
+	exit 0
 
 done
