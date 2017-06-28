@@ -1,8 +1,8 @@
 #!/bin/sh
 
-echo Hello World
+echo "Hello World";
 
-mem =$(free|grep Mem: | awk '{ print $2}')
+mem=$(free -m | grep Mem: | awk'{ print $2}')
 echo $mem
 
 usage() {
