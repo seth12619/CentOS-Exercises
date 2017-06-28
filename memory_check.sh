@@ -13,7 +13,7 @@ echo $perc_used
 usage() {
 	echo "Usage: $0 [-c int] [-w int] [-e email]" 1>&2; exit 1;
 }
-
+while :; do
 while getopts ":c:w:e:" o; do
     case "${o}" in
         c)
@@ -29,23 +29,28 @@ while getopts ":c:w:e:" o; do
 			;;
         *)
             usage
+			exit 1
             ;;
     esac
-	
-if[$c < $w]
+done
+((OPTIND++))
+[ $OPTIND -gt 3 ] && break
+
+done
+If [ "$c" -lt "$w" ]
 then
 	echo "Invalid Inputs - c must be greater than w"
 	exit 1
-elif[$perc_used >= $c]
+elif [  "$perc_used" -ge "$c" ]
 then
 	echo "Critical Error - Sending Mail"
 	exit 2
-elif[$perc_used >= $w]
+elif [ "$perc_used" -ge "$w" ]
 then
 	echo "Warning"
 	exit 1
 else
 	echo "All is gud"
 	exit 0
-
-done
+fi
+shift $((OPTIND-1))
