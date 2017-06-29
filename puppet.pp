@@ -31,4 +31,11 @@ class puppet {
 		target	=>	'/home/monitor/src/my_memory_check',
 	}
 	
+	cron{ 'my_memory_check':
+		command => '/home/monitor/src/my_memory_check',
+		user    => 'monitor',
+		hour    => 0,
+		minute  => 10,
+	}
+	
 }
