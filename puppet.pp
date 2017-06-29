@@ -1,8 +1,7 @@
 class puppet {
-	include ::wget
 
-	package { 
-		ensure	=>	'installed'
+	Package { 
+		ensure	=>	'installed',
 	}
 	package { 'vim': }
 	package { 'curl': }
