@@ -3,23 +3,33 @@ class puppet {
 	Package { 
 		ensure	=>	'installed',
 	}
-	package { 'vim': }
+	package { 'vim-enhanced': }
 	package { 'curl': }
 	package { 'git': }
 	
 	user { 'monitor':
-		ensure	=>	'present',
-		home	=>	'/home/monitor',
-		shell	=>	'/bin/bash',
+ 	 ensure           => 'present',
+  	 home             => '/home/monitor',
+  	 shell            => '/bin/bash',
+  	 uid              => '501',
+	}
+
+	file{'/home/monitor':
+		ensure	=> 'directory',
 	}
 	
-	file{ '/home/monitor/scripts/':
+	file{ '/home/monitor/scripts':
 		ensure	=>	'directory',
 	}
 	
 	exec{'memory_check':
-		command	=>	"/usr/bin/wget -q https://raw.githubusercontent.com/seth12619/CentOS-Exercises/master/memory_check.sh -O /home/monitor/scripts",
-		creates	=>	"/home/monitor/scripts",
+		command	=>	"/usr/bin/wget -q https://raw.githubusercontent.com/seth12619/CentOS-Exercises/master/memory_check.sh -O /home/monitor/scripts/memory_check",
+		creates	=>	"/home/monitor/scripts/memory_check",
+	}
+
+	file{'/home/monitor/scripts/memory_check':
+		mode => 0755,
+		require => Exec["memory_check"],
 	}
 	
 	file{ '/home/monitor/src/':
