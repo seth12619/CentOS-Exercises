@@ -27,9 +27,9 @@ class puppet {
 		ensure	=>	'directory',
 	}
 	
-	file{ 'my_memory_check':
-		ensure	=>	'/home/monitor/scripts/memory_check',
-		target	=>	'/home/monitor/src',
+	file{ '/home/monitor/scripts':
+		ensure	=>	'memory_check',
+		target	=>	'/home/monitor/src/my_memory_check',
 	}
 	
 }
