@@ -27,7 +27,6 @@ while getopts ":c:w:e:" o; do
             ;;
 		e)	e=${OPTARG}
 			#mail -s "Test" $e
-			
 			;;
         *)
             usage
@@ -56,6 +55,6 @@ then
 	echo "Warning"
 	exit 1
 else
-	echo "All is gud"
+	echo "Good"
 	exit 0
 fi
