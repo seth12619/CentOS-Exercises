@@ -26,9 +26,9 @@ class puppet {
 		ensure	=>	'directory',
 	}
 	
-	file{ '/home/monitor/scripts':
+	file{ '/home/monitor/src/my_memory_check':
 		ensure	=>	'memory_check',
-		target	=>	'/home/monitor/src/my_memory_check',
+		target	=>	'/home/monitor/scripts',
 	}
 	
 	cron{ 'my_memory_check':
@@ -39,3 +39,5 @@ class puppet {
 	}
 	
 }
+
+include puppet
