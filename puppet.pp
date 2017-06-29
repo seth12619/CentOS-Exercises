@@ -1,4 +1,6 @@
 class puppet {
+	include ::wget
+
 	package { 
 		ensure	=>	'installed'
 	}
@@ -11,4 +13,23 @@ class puppet {
 		home	=>	'/home/monitor',
 		shell	=>	'/bin/bash',
 	}
+	
+	file{ '/home/monitor/scripts/':
+		ensure	=>	'directory',
+	}
+	
+	exec{'memory_check':
+		command	=>	"/usr/bin/wget -q https://raw.githubusercontent.com/seth12619/CentOS-Exercises/master/memory_check.sh -O /home/monitor/scripts",
+		creates	=>	"/home/monitor/scripts",
+	}
+	
+	file{ '/home/monitor/src/':
+		ensure	=>	'directory',
+	}
+	
+	file{ 'my_memory_check':
+		ensure	=>	'/home/monitor/scripts/memory_check',
+		target	=>	'/home/monitor/src',
+	}
+	
 }
