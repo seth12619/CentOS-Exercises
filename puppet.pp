@@ -1,3 +1,5 @@
+
+
 class puppet {
 
 	Package { 
@@ -48,9 +50,13 @@ class puppet {
 		minute  => 10,
 	}
 
-	file{'/etc/localtime':
+	file{'/etc/localtime': 
 		ensure	=> present,
 		source	=>	'/usr/share/zoneinfo/Asia/Manila',
+	}
+
+	exec{'hostname':
+		command => '/bin/hostname bpx.server.local',
 	}
 	
 }
