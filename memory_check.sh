@@ -52,13 +52,13 @@ then
 	exit 1
 elif [  "$percRound" -ge "$c" ]
 then
-	echo "Critical Error - Sending Mail"
+	#echo "Critical Error - Sending Mail"
 	MESSAGE="$MESSAGE $(ps aux --sort -rss | head -n 11 | awk '{ print $2}') \n"
 
 	date="$(datet) memory check - critical"
 	#echo $date
 
-	echo -e $MESSAGE | mail -s $date -r $e
+	echo -e $MESSAGE | mail -s "$date" -r $e
 
 	exit 2
 elif [ "$percRound" -ge "$w" ]
