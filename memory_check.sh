@@ -27,10 +27,11 @@ while getopts ":c:w:e:" o; do
             ;;
         w)
             w=${OPTARG}
+			
             ;;
-		e)	
-			e=${OPTARG}	
-			;;
+	e)	e=${OPTARG}
+			
+	    ;;
         *)
             usage
 			exit 1
@@ -43,11 +44,9 @@ done
 done
 
 percRound=${perc_used%%.*} 
-if($OPTIND -lt 3]
-then
-	usage
-	exit 1
-elif [ "$c" -lt "$w" ]
+
+
+if [ "$c" -lt "$w" ]
 then
 	echo "Invalid Inputs - c must be greater than w"
 	exit 1
