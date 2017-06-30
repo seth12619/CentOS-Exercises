@@ -47,12 +47,15 @@ class puppet {
 		hour    => 0,
 		minute  => 10,
 	}
+
+	file{'/etc/localtime':
+		ensure	=> present,
+		source	=>	'/usr/share/zoneinfo/Asia/Manila',
+	}
 	
 }
 
-class{ 'timezone':
-	timezone => 'PHT',
-}
+
 
 include puppet
-include timezone
+
