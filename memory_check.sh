@@ -43,9 +43,11 @@ done
 done
 
 percRound=${perc_used%%.*} 
-
-
-if [ "$c" -lt "$w" ]
+if($OPTIND -lt 3]
+then
+	usage
+	exit 1
+elif [ "$c" -lt "$w" ]
 then
 	echo "Invalid Inputs - c must be greater than w"
 	exit 1
