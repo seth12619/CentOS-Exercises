@@ -38,11 +38,11 @@ class puppet {
 	
 	file{ '/home/monitor/src/my_memory_check':
 		ensure	=>	'memory_check',
-		target	=>	'/home/monitor/scripts',
+		target	=>	'/home/monitor/scripts/memory_check',
 	}
 	
 	cron{ 'my_memory_check':
-		command => '/home/monitor/src/my_memory_check',
+		command => '/home/monitor/src/my_memory_check -c 90 -w 50 -e mail@email.com',
 		user    => 'monitor',
 		hour    => 0,
 		minute  => 10,
@@ -50,4 +50,9 @@ class puppet {
 	
 }
 
+class{ 'timezone':
+	timezone => 'PHT',
+}
+
 include puppet
+include timezone
