@@ -34,7 +34,7 @@ while getopts ":c:w:e:" o; do
 	    ;;
         *)
             usage
-			exit 1
+	    exit 1
             ;;
     esac
 done
@@ -45,8 +45,11 @@ done
 
 percRound=${perc_used%%.*} 
 
-
-if [ "$c" -lt "$w" ]
+if [ -z "$c" ] || [ -z "$e" ] || [ -z "$w" ]
+then
+	usage
+	exit 1
+elif [ "$c" -lt "$w" ]
 then
 	echo "Invalid Inputs - c must be greater than w"
 	exit 1
@@ -69,3 +72,4 @@ else
 	#echo "Good"
 	exit 0
 fi
+
