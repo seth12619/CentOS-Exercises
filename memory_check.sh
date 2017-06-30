@@ -15,6 +15,10 @@ usage() {
 	echo "Usage: $0 [-c int] [-w int] [-e email]" 1>&2; exit 1;
 }
 
+datet() {
+	date "+%Y%m%d %H-%S"
+}
+
 while :; do
 while getopts ":c:w:e:" o; do
     case "${o}" in
@@ -25,9 +29,9 @@ while getopts ":c:w:e:" o; do
             w=${OPTARG}
 			
             ;;
-		e)	e=${OPTARG}
-			#mail -s "Test" $e
-			;;
+	e)	e=${OPTARG}
+			
+	    ;;
         *)
             usage
 			exit 1
@@ -49,6 +53,13 @@ then
 elif [  "$percRound" -ge "$c" ]
 then
 	echo "Critical Error - Sending Mail"
+	MESSAGE="$MESSAGE $(ps aux --sort -rss | head -n 11 | awk '{ print $2}') \n"
+
+	date="$(datet) memory check - critical"
+	echo $date
+
+	echo -e $MESSAGE | mail -s $date -r $e
+
 	exit 2
 elif [ "$percRound" -ge "$w" ]
 then
