@@ -56,16 +56,16 @@ then
 	MESSAGE="$MESSAGE $(ps aux --sort -rss | head -n 11 | awk '{ print $2}') \n"
 
 	date="$(datet) memory check - critical"
-	echo $date
+	#echo $date
 
 	echo -e $MESSAGE | mail -s $date -r $e
 
 	exit 2
 elif [ "$percRound" -ge "$w" ]
 then
-	echo "Warning"
+	#echo "Warning"
 	exit 1
 else
-	echo "Good"
+	#echo "Good"
 	exit 0
 fi
