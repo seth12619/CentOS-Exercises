@@ -27,11 +27,10 @@ while getopts ":c:w:e:" o; do
             ;;
         w)
             w=${OPTARG}
-			
             ;;
-	e)	e=${OPTARG}
-			
-	    ;;
+		e)	
+			e=${OPTARG}	
+			;;
         *)
             usage
 			exit 1
